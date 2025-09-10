@@ -507,7 +507,19 @@ export default function Presentation() {
                 >
                   {slide.hasChart ? (
                     <div className="relative w-full h-96 bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                      <Bar data={chartData} options={chartOptions} />
+                      <Bar data={chartData} options={{
+                        ...chartOptions,
+                        plugins: {
+                          ...chartOptions.plugins,
+                          title: {
+                            ...chartOptions.plugins.title,
+                            font: {
+                              size: chartOptions.plugins.title.font.size,
+                              weight: chartOptions.plugins.title.font.weight as "bold"
+                            }
+                          }
+                        }
+                      }} />
                     </div>
                   ) : slide.hasFrameworkCarousel ? (
                     <div className="relative w-full h-96 flex flex-col items-center justify-center overflow-hidden">
